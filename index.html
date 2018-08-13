@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/ico" sizes="16x16">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Donut | Enter a new generation</title>
+</head>
+
+<style>
+    #parseContent {
+        max-width: 750px;
+        margin: 0px auto;
+    }
+</style>
+
+<body>
+    <script>
+        var txtFile = new XMLHttpRequest();
+        txtFile.open("GET", "template.txt", true);
+        txtFile.onreadystatechange = function() {
+            if (txtFile.readyState === 4) { // Makes sure the document is ready to parse.
+                if (txtFile.status === 200) { // Makes sure it's found the file.
+                    allText = txtFile.responseText;
+                    lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+                    var customTextElement = document.getElementById('parseContent');
+                    //console.log(txtFile)
+                    customTextElement.innerHTML = '<p>' + lines.join('</p><p>') + '</p>';
+                }
+            }
+        }
+        txtFile.send(null);
+    </script>
+    <div id="parseContent"></div>
+</body>
+
+</html>
